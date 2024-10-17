@@ -16,14 +16,21 @@ function writeQueue(queue) {
 
 module.exports = async (req, res) => {
     if (req.method === 'POST') {
-        const { user } = req.body;
+        const customer = req.body;
         const queue = readQueue();
-        queue.push(user);
+        queue.push(customer);
         writeQueue(queue);
         res.status(200).json({ message: 'Added to queue' });
     } else if (req.method === 'GET') {
         const queue = readQueue();
         res.status(200).json(queue);
+    } else if (req.method === 'PUT') {
+        const queue = req.body;
+        writeQueue(queue);
+        res.status(200).json({ message: 'Queue updated' });
+    } else if (req.method === 'DELETE') {
+        writeQueue([]);
+        res.status(200).json({ message: 'Queue deleted' });
     } else {
         res.status(405).end(); // Method Not Allowed
     }

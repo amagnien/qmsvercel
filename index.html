@@ -9,8 +9,28 @@
 <body>
     <div id="app">
         <h1>Queue Management System</h1>
+        <div>
+            <button onclick="showNewCustomerForm()">New Customer</button>
+            <button onclick="generateReport()">Report</button>
+            <button class="delete-button" onclick="showDeleteWarning()">Delete at EOD</button>
+        </div>
+        <div id="customer-form" style="display:none;">
+            <input type="text" id="customer-name" placeholder="Name of Customer">
+            <input type="text" id="customer-description" placeholder="Description of Customer">
+            <input type="text" id="service-requested" placeholder="Service Requested">
+            <input type="text" id="service-type" placeholder="Service Type">
+            <button onclick="addCustomer()">Add</button>
+        </div>
+        <div id="delete-warning" style="display:none;">
+            <p>Are you sure you want to delete all customer data?</p>
+            <button onclick="deleteData()">Proceed</button>
+            <button onclick="hideDeleteWarning()">Cancel</button>
+        </div>
+        <div id="tabs">
+            <button onclick="showTab('waiting')">Waiting Customers</button>
+            <button onclick="showTab('served')">Served Customers</button>
+        </div>
         <div id="queue-list"></div>
-        <button onclick="addToQueue()">Add to Queue</button>
     </div>
     <script src="app.js"></script>
 </body>

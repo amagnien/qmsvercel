@@ -3,34 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Queuing Management System Preview</title>
     <link rel="stylesheet" href="styles.css">
-    <title>Queue Management System</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
 </head>
 <body>
-    <div id="app">
-        <h1>Queue Management System</h1>
-        <div>
-            <button id="new-customer-btn">New Customer</button>
-            <button id="report-btn">Report</button>
-            <button id="delete-eod-btn" class="delete-button">Delete at EOD</button>
-        </div>
-        <div id="customer-form" style="display:none;">
-            <input type="text" id="customer-name" placeholder="Name of Customer">
-            <input type="text" id="customer-description" placeholder="Description of Customer">
-            <input type="text" id="service-requested" placeholder="Service Requested">
-            <input type="text" id="service-type" placeholder="Service Type">
-            <button id="add-customer-btn">Add</button>
-        </div>
-        <div id="delete-warning" style="display:none;">
-            <p>Are you sure you want to delete all customer data?</p>
-            <button id="proceed-delete-btn">Proceed</button>
-            <button id="cancel-delete-btn">Cancel</button>
-        </div>
-        <div id="tabs">
-            <button onclick="showTab('waiting')">Waiting Customers</button>
-            <button onclick="showTab('served')">Served Customers</button>
-        </div>
-        <div id="queue-list"></div>
+    <h1>Queuing Management System</h1>
+    <div>
+        <button id="newCustomerBtn">New Customer</button>
+        <button id="reportBtn">Report</button>
+        <button id="deleteEODBtn" class="delete-button">Delete at EOD</button>
+    </div>
+    <div id="newCustomerForm" class="card" style="display:none;">
+        <h2>New Customer</h2>
+        <form id="customerForm">
+            <div class="form-group">
+                <label for="name">Name of Customer</label>
+                <input type="text" id="name" required>
+            </div>
+            <div class="form-group">
+                <label for="description">Description of Customer</label>
+                <input type="text" id="description" required>
+            </div>
+            <div class="form-group">
+                <label for="service">Service</label>
+                <input type="text" id="service" required>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <div class="tabs">
+        <div class="tab active" data-tab="waiting">Waiting Customers</div>
+        <div class="tab" data-tab="served">Served Customers</div>
+    </div>
+    <div id="waitingCustomers" class="card">
+        <h2>Waiting Customers</h2>
+        <table id="waitingTable">
+            <thead>
+                <tr>
+                    <th>Ticket Number</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Service</th>
+                    <th>Time</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <div id="servedCustomers" class="card" style="display: none;">
+        <h2>Served Customers</h2>
+        <table id="servedTable">
+            <thead>
+                <tr>
+                    <th>Ticket Number</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Service</th>
+                    <th>Time</th>
+                    <th>Served At</th>
+                    <th>Waiting Time</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
     </div>
     <script src="app.js"></script>
 </body>

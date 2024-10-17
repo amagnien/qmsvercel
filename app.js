@@ -13,7 +13,7 @@ async function addCustomer() {
     const description = document.getElementById('customer-description').value;
     const serviceRequested = document.getElementById('service-requested').value;
     const serviceType = document.getElementById('service-type').value;
-    
+
     const customer = { name, description, serviceRequested, serviceType, status: 'waiting' };
     await fetch('/api/queue', {
         method: 'POST',
@@ -29,7 +29,7 @@ function showNewCustomerForm() {
 }
 
 function generateReport() {
-    const report = served.map(customer => `
+    const reportContent = served.map(customer => `
         <div>
             <p>Name: ${customer.name}</p>
             <p>Description: ${customer.description}</p>
@@ -37,7 +37,10 @@ function generateReport() {
             <p>Service Type: ${customer.serviceType}</p>
         </div>
     `).join('');
-    document.getElementById('queue-list').innerHTML = report;
+
+    const newWindow = window.open("", "Print Report");
+    newWindow.document.write(`<html><head><title>Report</title></head><body>${reportContent}</body></html>`);
+    newWindow.print();
 }
 
 function showDeleteWarning() {
@@ -63,6 +66,9 @@ async function displayQueue() {
     const waitingCustomers = queue.filter(customer => customer.status === 'waiting').map(customer => `
         <div>
             <p>${customer.name}</p>
+            <p>${customer.description}</p>
+            <p>${customer.serviceRequested}</p>
+            <p>${customer.serviceType}</p>
             <button onclick="serveCustomer('${customer.name}')">Serve</button>
         </div>
     `).join('');

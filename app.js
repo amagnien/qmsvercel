@@ -1,3 +1,10 @@
+document.getElementById('new-customer-btn').addEventListener('click', showNewCustomerForm);
+document.getElementById('report-btn').addEventListener('click', generateReport);
+document.getElementById('delete-eod-btn').addEventListener('click', showDeleteWarning);
+document.getElementById('add-customer-btn').addEventListener('click', addCustomer);
+document.getElementById('proceed-delete-btn').addEventListener('click', deleteData);
+document.getElementById('cancel-delete-btn').addEventListener('click', hideDeleteWarning);
+
 let queue = [];
 let served = [];
 
@@ -14,6 +21,7 @@ async function addCustomer() {
         body: JSON.stringify(customer),
     });
     displayQueue();
+    document.getElementById('customer-form').style.display = 'none'; // Hide form after adding
 }
 
 function showNewCustomerForm() {
@@ -45,6 +53,7 @@ async function deleteData() {
     queue = [];
     served = [];
     displayQueue();
+    hideDeleteWarning();
 }
 
 async function displayQueue() {

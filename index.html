@@ -10,21 +10,21 @@
     <div id="app">
         <h1>Queue Management System</h1>
         <div>
-            <button onclick="showNewCustomerForm()">New Customer</button>
-            <button onclick="generateReport()">Report</button>
-            <button class="delete-button" onclick="showDeleteWarning()">Delete at EOD</button>
+            <button id="new-customer-btn">New Customer</button>
+            <button id="report-btn">Report</button>
+            <button id="delete-eod-btn" class="delete-button">Delete at EOD</button>
         </div>
         <div id="customer-form" style="display:none;">
             <input type="text" id="customer-name" placeholder="Name of Customer">
             <input type="text" id="customer-description" placeholder="Description of Customer">
             <input type="text" id="service-requested" placeholder="Service Requested">
             <input type="text" id="service-type" placeholder="Service Type">
-            <button onclick="addCustomer()">Add</button>
+            <button id="add-customer-btn">Add</button>
         </div>
         <div id="delete-warning" style="display:none;">
             <p>Are you sure you want to delete all customer data?</p>
-            <button onclick="deleteData()">Proceed</button>
-            <button onclick="hideDeleteWarning()">Cancel</button>
+            <button id="proceed-delete-btn">Proceed</button>
+            <button id="cancel-delete-btn">Cancel</button>
         </div>
         <div id="tabs">
             <button onclick="showTab('waiting')">Waiting Customers</button>
